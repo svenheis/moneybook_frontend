@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Titel from "../../components/Allgemein/Ueberschriften";
 import Button from "../../components/Allgemein/Button";
-import {
-  eintragLoeschen,
-  fetchEingaenge,
-} from "../../../../moneybook_backend/src/service/EintragAusgabe";
 import Header from "../../components/Allgemein/Header";
 import Input from "../../components/Allgemein/Input";
 import "./Ausgabe.css";
@@ -16,23 +12,31 @@ function Ausgabe() {
   const [filterEinnahmen, setFilterEinnahmen] = useState(true);
   const [filterAusgaben, setFilterAusgaben] = useState(true);
 
+  // Alle Einträge ausgeben
+  const fetchEingaenge = async () => {
+    try {
+      const response = await fetch("http://localhost:3500/api/eintrag", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await response.json();
+      setEingaenge(data.eintrag);
+    } catch {
+      console.log("Fehler beim Ausgeben der Einträge");
+    }
+  };
+
   // Einträge anzeigen
   useEffect(() => {
-    const Anzeigen = async () => {
-      try {
-        const data = await fetchEingaenge();
-        setEingaenge(data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    Anzeigen();
+    fetchEingaenge();
   }, []);
 
   // Einträge löschen
   const EintragLoeschen = async (id) => {
     try {
-      await eintragLoeschen(id);
+      await fetch(`http://localhost:3500/api/eintrag/${id}`, {
+        method: "DELETE",
+      });
       setEingaenge((prevEingaenge) =>
         prevEingaenge.filter((eintrag) => eintrag._id !== id)
       );

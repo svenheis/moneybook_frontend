@@ -5,7 +5,6 @@ import Header from "../../components/Allgemein/Header";
 import Titel from "../../components/Allgemein/Ueberschriften";
 import "../PageStyle.css";
 import "./Erfassen.css";
-import { eintragErfassen } from "../../../../moneybook_backend/src/service/EintragErfassen";
 import { useNavigate } from "react-router-dom";
 
 const Erfassen = () => {
@@ -25,9 +24,13 @@ const Erfassen = () => {
     event.preventDefault();
     console.log(inputs);
     try {
-      const status = await eintragErfassen(inputs);
-      console.log(status);
-      if (status === 201) {
+      const response = await fetch("http://localhost:3500/api/eintrag", {
+        method: "POST",
+        body: JSON.stringify(inputs),
+        headers: { "Content-Type": "application/json" },
+      });
+      console.log(response.status);
+      if (response.status === 201) {
         navigate("/home");
       }
     } catch (err) {

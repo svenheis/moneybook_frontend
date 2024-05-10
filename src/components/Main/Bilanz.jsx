@@ -1,5 +1,4 @@
 import React from "react";
-import { fetchEingaenge } from "../../../../moneybook_backend/src/service/EintragAusgabe";
 import "./Bilanz.css";
 
 class Bilanz extends React.Component {
@@ -12,7 +11,12 @@ class Bilanz extends React.Component {
   }
   async componentDidMount() {
     try {
-      const eingaenge = await fetchEingaenge();
+      const response = await fetch("http://localhost:3500/api/eintrag", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await response.json();
+      const eingaenge = data.eintrag;
       const einnahmen = eingaenge.filter(
         (eintrag) => eintrag.typ === "Einnahme"
       );

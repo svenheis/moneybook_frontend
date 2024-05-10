@@ -1,6 +1,5 @@
 import React from "react";
 import Titel from "../Allgemein/Ueberschriften";
-import { fetchEingaenge } from "../../../../moneybook_backend/src/service/EintragAusgabe";
 import "./KurzBericht.css";
 import "../../pages/Main/Ausgabe.css";
 
@@ -14,15 +13,17 @@ class KurzBericht extends React.Component {
 
   async componentDidMount() {
     try {
-      const eingaenge = await fetchEingaenge();
-
-      const dreiEintraege = eingaenge.slice(0, 3);
-      this.setState({ eingaenge: dreiEintraege });
+      const response = await fetch("http://localhost:3500/api/eintrag", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await response.json();
+      const eingaenge = data.eintrag.slice(0, 3);
+      this.setState({ eingaenge });
     } catch (err) {
       console.log(err);
     }
   }
-
   render() {
     const { eingaenge } = this.state;
     return (
