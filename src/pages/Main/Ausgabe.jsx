@@ -36,7 +36,6 @@ function Ausgabe() {
       setEingaenge((prevEingaenge) =>
         prevEingaenge.filter((eintrag) => eintrag._id !== id)
       );
-      setEingaenge();
     } catch (err) {
       console.log(err);
     }
