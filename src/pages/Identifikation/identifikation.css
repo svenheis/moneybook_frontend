@@ -1,0 +1,15 @@
+.logInFooter {
+  margin-top: 2rem;
+  display: flex;
+  align-items: space-around;
+  justify-content: space-around;
+}
+.logInBtn {
+  background-color: green;
+}
+.registrierenBtn {
+  background-color: blue;
+}
+.startBtn {
+  background-color: red;
+}

@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: rgb(0, 0, 0);
+}
+.umrandung {
+  background: rgb(144, 144, 144);
+  background: radial-gradient(
+    circle,
+    rgba(144, 144, 144, 1) 0%,
+    rgba(48, 48, 48, 1) 80%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  padding: 30px;
+  border: 0.5px solid black;
+  box-shadow: 0 0 5px black;
+}

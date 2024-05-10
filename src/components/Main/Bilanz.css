@@ -1,0 +1,12 @@
+.bilanzZeile {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
+.ausgabenZahl {
+  color: red;
+}
+.red {
+  color: red;
+}

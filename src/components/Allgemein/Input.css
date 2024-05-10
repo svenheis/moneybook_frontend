@@ -1,0 +1,16 @@
+.standartInputContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.standartInputClass {
+  background-color: hsla(0, 0%, 90%, 0.3);
+  padding: 5px;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+.standartInputClass::placeholder {
+  color: black;
+}
