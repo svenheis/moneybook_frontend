@@ -5,6 +5,7 @@ import Titel from "../../components/Allgemein/Ueberschriften";
 import "../PageStyle.css";
 import { useNavigate } from "react-router-dom";
 import "./identifikation.css";
+import { Einloggen } from "../../services/eintragService";
 
 const LogIn = ({ setEingeloggt }) => {
   // Standartwert eines Inputfeldes
@@ -22,14 +23,7 @@ const LogIn = ({ setEingeloggt }) => {
   const loginSubmitHandler = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("http://localhost:3500/api/user/login", {
-        method: "POST",
-        body: JSON.stringify({
-          email: inputs.email,
-          password: inputs.password,
-        }),
-        headers: { "Content-Type": "application/json" },
-      });
+      const response = await Einloggen(inputs);
       console.log(response.status);
       if (response.status === 200) {
         const data = await response.json();

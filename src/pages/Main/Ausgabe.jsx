@@ -6,6 +6,7 @@ import Input from "../../components/Allgemein/Input";
 import "./Ausgabe.css";
 import "../../components/Allgemein/Button.css";
 import dayjs from "dayjs";
+import { eintragAusgabe, EintragLoeschen } from "../../services/eintragService";
 
 function Ausgabe() {
   const [eingaenge, setEingaenge] = useState([]);
@@ -14,31 +15,19 @@ function Ausgabe() {
   const [filterAusgaben, setFilterAusgaben] = useState(true);
 
   // Alle Einträge ausgeben
-  const fetchEingaenge = async () => {
-    try {
-      const response = await fetch("http://localhost:3500/api/eintrag", {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      });
-      const data = await response.json();
-      setEingaenge(data.eintrag);
-    } catch {
-      console.log("Fehler beim Ausgeben der Einträge");
-    }
-  };
-
-  // Einträge anzeigen
 
   useEffect(() => {
-    fetchEingaenge();
+    const fetchData = async () => {
+      const data = await eintragAusgabe();
+      setEingaenge(data.eintrag);
+    };
+    fetchData();
   }, []);
 
   // Einträge löschen
-  const EintragLoeschen = async (id) => {
+  const handleEintragLoeschen = async (id) => {
     try {
-      await fetch(`http://localhost:3500/api/eintrag/${id}`, {
-        method: "DELETE",
-      });
+      await EintragLoeschen(id);
       setEingaenge((prevEingaenge) =>
         prevEingaenge.filter((eintrag) => eintrag._id !== id)
       );
@@ -46,6 +35,7 @@ function Ausgabe() {
       console.log(err);
     }
   };
+
   // Einträge sortieren
   const datenSortieren = (key) => {
     const frischSortieren = { ...sortieren, [key]: !sortieren[key] };
@@ -196,7 +186,7 @@ function Ausgabe() {
                 <td className="typSpalte">{eingang.typ}</td>
                 <td className="löschenContainer">
                   <Button
-                    onClick={() => EintragLoeschen(eingang._id)}
+                    onClick={() => handleEintragLoeschen(eingang._id)}
                     text="Löschen"
                     className="löschenBtn"
                   />

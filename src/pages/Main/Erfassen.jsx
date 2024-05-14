@@ -6,6 +6,7 @@ import Titel from "../../components/Allgemein/Ueberschriften";
 import "../PageStyle.css";
 import "./Erfassen.css";
 import { useNavigate } from "react-router-dom";
+import { EintragErfassen } from "../../services/eintragService";
 
 const Erfassen = () => {
   const [inputs, setInputs] = useState({
@@ -24,12 +25,7 @@ const Erfassen = () => {
     event.preventDefault();
     console.log(inputs);
     try {
-      const response = await fetch("http://localhost:3500/api/eintrag", {
-        method: "POST",
-        body: JSON.stringify(inputs),
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-      });
+      const response = await EintragErfassen(inputs);
       console.log(response.status);
       if (response.status === 201) {
         navigate("/home");

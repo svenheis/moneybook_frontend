@@ -3,9 +3,11 @@ import Input from "../../components/Allgemein/Input";
 import Button from "../../components/Allgemein/Button";
 import Titel from "../../components/Allgemein/Ueberschriften";
 import "../PageStyle.css";
+import { useNavigate } from "react-router-dom";
+import { UserErfassen } from "../../services/eintragService";
 
 const Register = (event) => {
-  // Standartwert eines Inputfeldes
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     userName: "",
     email: "",
@@ -20,24 +22,15 @@ const Register = (event) => {
 
   // Funktion zum übergeben der Daten an den Endpunkt
   const registerSubmitHandler = async (event) => {
-    // löschen des Inhaltes vom Eingabefeld
     event.preventDefault();
+
     try {
-      const response = await fetch("http://localhost:3500/api/user/register", {
-        method: "POST",
-        body: JSON.stringify({
-          userName: inputs.userName,
-          email: inputs.email,
-          password: inputs.password,
-        }),
-        headers: { "Content-Type": "application/json" },
-      });
+      const response = await UserErfassen(inputs);
       console.log(response.status);
       if (response.status === 201) {
-        const responseData = await response.json();
-        window.location.replace("http://localhost:5173/login");
+        navigate("/login");
       } else {
-        console.log(errorCode);
+        console.error("Schiefgelaufen");
       }
     } catch (err) {
       console.log(err);
