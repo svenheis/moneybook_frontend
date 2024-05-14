@@ -4,7 +4,7 @@ import Button from "../../components/Allgemein/Button";
 import Titel from "../../components/Allgemein/Ueberschriften";
 import "../PageStyle.css";
 import { useNavigate } from "react-router-dom";
-import { UserErfassen } from "../../services/eintragService";
+import { UserErfassen } from "../../services/Service";
 
 const Register = (event) => {
   const navigate = useNavigate();

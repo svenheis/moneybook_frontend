@@ -5,7 +5,7 @@ import Titel from "../../components/Allgemein/Ueberschriften";
 import "../PageStyle.css";
 import { useNavigate } from "react-router-dom";
 import "./identifikation.css";
-import { Einloggen } from "../../services/eintragService";
+import { Einloggen } from "../../services/Service";
 
 const LogIn = ({ setEingeloggt }) => {
   // Standartwert eines Inputfeldes

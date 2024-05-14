@@ -6,7 +6,7 @@ import Titel from "../../components/Allgemein/Ueberschriften";
 import "../PageStyle.css";
 import "./Erfassen.css";
 import { useNavigate } from "react-router-dom";
-import { EintragErfassen } from "../../services/eintragService";
+import { EintragErfassen } from "../../services/Service";
 
 const Erfassen = () => {
   const [inputs, setInputs] = useState({

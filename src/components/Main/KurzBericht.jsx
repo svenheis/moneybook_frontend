@@ -3,7 +3,7 @@ import Titel from "../Allgemein/Ueberschriften";
 import "./KurzBericht.css";
 import "../../pages/Main/Ausgabe.css";
 import dayjs from "dayjs";
-import { eintragAusgabe } from "../../services/eintragService";
+import { eintragAusgabe } from "../../services/Service";
 
 export const KurzBericht = () => {
   const [eingaenge, setEingaenge] = useState([]);

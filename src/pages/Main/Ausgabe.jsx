@@ -6,7 +6,7 @@ import Input from "../../components/Allgemein/Input";
 import "./Ausgabe.css";
 import "../../components/Allgemein/Button.css";
 import dayjs from "dayjs";
-import { eintragAusgabe, EintragLoeschen } from "../../services/eintragService";
+import { eintragAusgabe, EintragLoeschen } from "../../services/Service";
 
 function Ausgabe() {
   const [eingaenge, setEingaenge] = useState([]);
