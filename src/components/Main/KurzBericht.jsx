@@ -2,6 +2,7 @@ import React from "react";
 import Titel from "../Allgemein/Ueberschriften";
 import "./KurzBericht.css";
 import "../../pages/Main/Ausgabe.css";
+import dayjs from "dayjs";
 
 class KurzBericht extends React.Component {
   constructor(props) {
@@ -51,7 +52,10 @@ class KurzBericht extends React.Component {
                     eingang.typ === "Einnahme" ? "lightgreen" : "lightcoral",
                 }}
               >
-                <td className="datum datumSpalte">{eingang.datum}</td>
+                <td className="datum datumSpalte">
+                  {" "}
+                  {dayjs(eingang.datum).format("DD.MM.YYYY")}
+                </td>
                 <td className="titel titelSpalte">{eingang.titel}</td>
                 <td className="betrag betragSpalteKlein">
                   {eingang.betrag + " Fr."}

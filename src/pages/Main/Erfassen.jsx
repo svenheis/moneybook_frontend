@@ -9,10 +9,10 @@ import { useNavigate } from "react-router-dom";
 
 const Erfassen = () => {
   const [inputs, setInputs] = useState({
-    typ: "",
-    datum: "",
-    titel: "",
-    betrag: "",
+    typ: "Einnahme",
+    datum: "2024-05-18",
+    titel: "A",
+    betrag: "1",
   });
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -28,6 +28,7 @@ const Erfassen = () => {
         method: "POST",
         body: JSON.stringify(inputs),
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
       });
       console.log(response.status);
       if (response.status === 201) {

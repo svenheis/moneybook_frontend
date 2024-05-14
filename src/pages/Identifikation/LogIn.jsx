@@ -9,8 +9,8 @@ import "./identifikation.css";
 const LogIn = ({ setEingeloggt }) => {
   // Standartwert eines Inputfeldes
   const [inputs, setInputs] = useState({
-    email: "",
-    password: "",
+    email: "sven@sven.ch",
+    password: "12345",
   });
   const navigate = useNavigate();
 
@@ -42,8 +42,8 @@ const LogIn = ({ setEingeloggt }) => {
         alert("Benutzer-Name oder Passwort falsch");
         console.log("error");
       }
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.error("Login failed:", error.message);
     }
   };
   return (

@@ -5,6 +5,7 @@ import Header from "../../components/Allgemein/Header";
 import Input from "../../components/Allgemein/Input";
 import "./Ausgabe.css";
 import "../../components/Allgemein/Button.css";
+import dayjs from "dayjs";
 
 function Ausgabe() {
   const [eingaenge, setEingaenge] = useState([]);
@@ -27,6 +28,7 @@ function Ausgabe() {
   };
 
   // Einträge anzeigen
+
   useEffect(() => {
     fetchEingaenge();
   }, []);
@@ -121,6 +123,13 @@ function Ausgabe() {
                 text={<Titel hLevel={5} titel="Betrag" />}
               />
             </td>
+            <td className="userSpalte betragSpalte">
+              <Button
+                className="SortBtn"
+                onClick={() => datenSortieren("user")}
+                text={<Titel hLevel={5} titel="User" />}
+              />
+            </td>
             <td className="typSpalte">
               <Button
                 className="SortBtn"
@@ -176,9 +185,14 @@ function Ausgabe() {
                     eingang.typ === "Einnahme" ? "lightgreen" : "lightcoral",
                 }}
               >
-                <td className="datumSpalte">{eingang.datum}</td>
+                <td className="datumSpalte">
+                  {dayjs(eingang.datum).format("DD.MM.YYYY")}
+                </td>
                 <td className="titelSpalte">{eingang.titel}</td>
                 <td className="betragSpalte">{eingang.betrag + " Fr."}</td>
+                <td className="userSpalte betragSpalte">
+                  {eingang.user ? eingang.user.userName : ""}
+                </td>
                 <td className="typSpalte">{eingang.typ}</td>
                 <td className="löschenContainer">
                   <Button
