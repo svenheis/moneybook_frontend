@@ -21,6 +21,7 @@ const Erfassen = () => {
     const value = e.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
   };
+
   const erfassenSubmitHandler = async (event) => {
     event.preventDefault();
     console.log(inputs);

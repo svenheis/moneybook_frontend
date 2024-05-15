@@ -25,6 +25,7 @@ function Ausgabe() {
   }, []);
 
   // Einträge löschen
+
   const handleEintragLoeschen = async (id) => {
     try {
       await EintragLoeschen(id);
@@ -37,6 +38,7 @@ function Ausgabe() {
   };
 
   // Einträge sortieren
+
   const datenSortieren = (key) => {
     const frischSortieren = { ...sortieren, [key]: !sortieren[key] };
     setSortieren(frischSortieren);
@@ -63,7 +65,9 @@ function Ausgabe() {
     });
     setEingaenge(sortierteEingaenge);
   };
+
   // Filterfunktionen
+
   const handleFilterEinnahmen = () => {
     setFilterEinnahmen(true);
     setFilterAusgaben(false);
