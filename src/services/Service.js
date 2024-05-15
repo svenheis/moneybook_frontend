@@ -4,10 +4,13 @@
 
 export const BilanzAusgabe = async () => {
   try {
-    const response = await fetch("http://localhost:3500/api/eintrag", {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    });
+    const response = await fetch(
+      "https://moneybook-backend.onrender.com/api/eintrag",
+      {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      }
+    );
     const data = await response.json();
     const eingaenge = data.eintrag;
     const einnahmen = eingaenge.filter((eintrag) => eintrag.typ === "Einnahme");
@@ -24,12 +27,15 @@ export const BilanzAusgabe = async () => {
 
 export const Logout = async (navigate) => {
   try {
-    const response = await fetch("http://localhost:3500/api/user/logout", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      "https://moneybook-backend.onrender.com/api/user/logout",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     console.log(response.status);
     if (response.status === 200) {
       localStorage.removeItem("token");
@@ -52,10 +58,13 @@ export const Logout = async (navigate) => {
 
 export const eintragAusgabe = async () => {
   try {
-    const response = await fetch("http://localhost:3500/api/eintrag", {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    });
+    const response = await fetch(
+      "https://moneybook-backend.onrender.com/api/eintrag",
+      {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      }
+    );
     const data = await response.json();
     return data;
   } catch (error) {
@@ -70,12 +79,15 @@ export const eintragAusgabe = async () => {
 
 export const EintragErfassen = async (inputs) => {
   try {
-    const response = await fetch("http://localhost:3500/api/eintrag", {
-      method: "POST",
-      body: JSON.stringify(inputs),
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-    });
+    const response = await fetch(
+      "https://moneybook-backend.onrender.com/api/eintrag",
+      {
+        method: "POST",
+        body: JSON.stringify(inputs),
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      }
+    );
     return response;
   } catch (error) {
     console.error("Fehler beim erfassen des Eintrags");
@@ -87,14 +99,17 @@ export const EintragErfassen = async (inputs) => {
 
 export const Einloggen = async (inputs) => {
   try {
-    const response = await fetch("http://localhost:3500/api/user/login", {
-      method: "POST",
-      body: JSON.stringify({
-        email: inputs.email,
-        password: inputs.password,
-      }),
-      headers: { "Content-Type": "application/json" },
-    });
+    const response = await fetch(
+      "https://moneybook-backend.onrender.com/api/user/login",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          email: inputs.email,
+          password: inputs.password,
+        }),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
     return response;
   } catch (error) {
     console.error("Login failed:", error.message);
@@ -105,15 +120,18 @@ export const Einloggen = async (inputs) => {
 
 export const UserErfassen = async (inputs) => {
   try {
-    const response = await fetch("http://localhost:3500/api/user/register", {
-      method: "POST",
-      body: JSON.stringify({
-        userName: inputs.userName,
-        email: inputs.email,
-        password: inputs.password,
-      }),
-      headers: { "Content-Type": "application/json" },
-    });
+    const response = await fetch(
+      "https://moneybook-backend.onrender.com/api/user/register",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          userName: inputs.userName,
+          email: inputs.email,
+          password: inputs.password,
+        }),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
     return response;
   } catch (error) {
     console.error("Fehler beim erfassen des Users");
@@ -127,7 +145,7 @@ export const UserErfassen = async (inputs) => {
 
 export const EintragLoeschen = async (id) => {
   try {
-    await fetch(`http://localhost:3500/api/eintrag/${id}`, {
+    await fetch(`https://moneybook-backend.onrender.com/api/eintrag/${id}`, {
       method: "DELETE",
     });
     return { id };
