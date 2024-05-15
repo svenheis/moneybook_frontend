@@ -5,7 +5,7 @@
 export const BilanzAusgabe = async () => {
   try {
     const response = await fetch(
-      "https://moneybook-backend.onrender.com/api/eintrag",
+      "https://moneybook-backend.onrender.com:3500/api/eintrag",
       {
         method: "GET",
         headers: { "Content-Type": "application/json" },
@@ -28,7 +28,7 @@ export const BilanzAusgabe = async () => {
 export const Logout = async (navigate) => {
   try {
     const response = await fetch(
-      "https://moneybook-backend.onrender.com/api/user/logout",
+      "https://moneybook-backend.onrender.com:3500/api/user/logout",
       {
         method: "GET",
         headers: {
@@ -59,7 +59,7 @@ export const Logout = async (navigate) => {
 export const eintragAusgabe = async () => {
   try {
     const response = await fetch(
-      "https://moneybook-backend.onrender.com/api/eintrag",
+      "https://moneybook-backend.onrender.com:3500/api/eintrag",
       {
         method: "GET",
         headers: { "Content-Type": "application/json" },
@@ -80,7 +80,7 @@ export const eintragAusgabe = async () => {
 export const EintragErfassen = async (inputs) => {
   try {
     const response = await fetch(
-      "https://moneybook-backend.onrender.com/api/eintrag",
+      "https://moneybook-backend.onrender.com:3500/api/eintrag",
       {
         method: "POST",
         body: JSON.stringify(inputs),
@@ -100,7 +100,7 @@ export const EintragErfassen = async (inputs) => {
 export const Einloggen = async (inputs) => {
   try {
     const response = await fetch(
-      "https://moneybook-backend.onrender.com/api/user/login",
+      "https://moneybook-backend.onrender.com:3500/api/user/login",
       {
         method: "POST",
         body: JSON.stringify({
@@ -121,7 +121,7 @@ export const Einloggen = async (inputs) => {
 export const UserErfassen = async (inputs) => {
   try {
     const response = await fetch(
-      "https://moneybook-backend.onrender.com/api/user/register",
+      "https://moneybook-backend.onrender.com:3500/api/user/register",
       {
         method: "POST",
         body: JSON.stringify({
@@ -145,9 +145,12 @@ export const UserErfassen = async (inputs) => {
 
 export const EintragLoeschen = async (id) => {
   try {
-    await fetch(`https://moneybook-backend.onrender.com/api/eintrag/${id}`, {
-      method: "DELETE",
-    });
+    await fetch(
+      `https://moneybook-backend.onrender.com:3500/api/eintrag/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
     return { id };
   } catch (error) {
     console.error("Fehler beim Löschen des Eintrags", error);
