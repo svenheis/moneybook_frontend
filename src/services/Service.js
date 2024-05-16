@@ -1,4 +1,4 @@
-const Route = "https://moneybook-backend.onrender.com:3500";
+const Route = "https://moneybook-backend.onrender.com";
 
 // GET
 
