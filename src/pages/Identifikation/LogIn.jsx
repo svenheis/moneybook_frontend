@@ -27,9 +27,6 @@ const LogIn = ({ setEingeloggt }) => {
       console.log(response.status);
       if (response.status === 200) {
         const data = await response.json();
-        localStorage.setItem("token", data.token);
-        document.cookie = `token=${data.token}; path=/; SameSite=Strict; Secure`;
-        document.cookie = `username=${data.username}; path=/; SameSite=Strict; Secure`;
         setEingeloggt(true);
         navigate("/home");
       } else {
