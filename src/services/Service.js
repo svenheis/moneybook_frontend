@@ -96,6 +96,7 @@ export const Einloggen = async (inputs) => {
         password: inputs.password,
       }),
       headers: { "Content-Type": "application/json" },
+      credentials: "include",
     });
     return response;
   } catch (error) {
