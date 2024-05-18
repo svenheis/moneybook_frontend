@@ -139,3 +139,17 @@ export const EintragLoeschen = async (id) => {
     throw error;
   }
 };
+
+// Verify Test
+
+export const getProtectedData = async () => {
+  try {
+    const response = await fetch(`${Route}/api/eintrag/protected`, {
+      method: "GET",
+      credentials: "include",
+    });
+    return response;
+  } catch (error) {
+    console.error("Fetch failed:", error.message);
+  }
+};
