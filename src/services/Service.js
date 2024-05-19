@@ -1,4 +1,4 @@
-const Route = "https://moneybook-backend.onrender.com";
+const Route = "http://localhost:3500";
 
 // GET
 
@@ -98,7 +98,9 @@ export const Einloggen = async (inputs) => {
       headers: { "Content-Type": "application/json" },
       credentials: "include",
     });
-    return response;
+    const data = await response.json();
+    localStorage.setItem("token", data.token);
+    return data;
   } catch (error) {
     console.error("Login failed:", error.message);
   }

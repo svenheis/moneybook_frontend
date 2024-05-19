@@ -23,10 +23,12 @@ const LogIn = ({ setEingeloggt }) => {
   const loginSubmitHandler = async (event) => {
     event.preventDefault();
     try {
-      const response = await Einloggen(inputs);
-      console.log(response.status);
-      if (response.status === 200) {
-        const data = await response.json();
+      const data = await Einloggen(inputs);
+
+      if (data) {
+        localStorage.setItem("token", data.token);
+        document.cookie = `token=${data.token}; path=/; SameSite=Strict; Secure`;
+        document.cookie = `username=${data.username}; path=/; SameSite=Strict; Secure`;
         setEingeloggt(true);
         navigate("/home");
       } else {
