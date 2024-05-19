@@ -1,29 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Header.css";
 import Button from "./Button";
 import logo from "../../../public/bilder/Logo/logo.png";
 import { useNavigate } from "react-router-dom";
 import { Logout } from "../../services/Service";
+import { userAnzeigen } from "../../services/Service";
 
 const Header = () => {
   const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    const userHeaderAnzeige = async () => {
+      try {
+        const username = await userAnzeigen();
+        setUsername(username);
+      } catch (error) {
+        console.error("Fehler beim Abrufen des Benutzernamens:", error);
+      }
+    };
+
+    userHeaderAnzeige();
+  }, []);
 
   const handleLogoutButton = async () => {
     Logout(navigate);
   };
 
-  const cookieData = document.cookie
-    .split("; ")
-    .find((row) => row.startsWith("username"));
-
-  let username = "";
-  if (cookieData) {
-    username = cookieData.split("=")[1];
-  }
-
   return (
     <div className="header-div">
-      <div className="username">{username && <div>{username}</div>}</div>
+      <div className="username">
+        {" "}
+        <div>{username}</div>
+      </div>
       <div className="logo">
         <img src={logo} alt="Logo" />
       </div>

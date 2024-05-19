@@ -31,15 +31,16 @@ export const Logout = async (navigate) => {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
     });
     console.log(response.status);
     if (response.status === 200) {
       localStorage.removeItem("token");
-      localStorage.removeItem("user");
+      localStorage.removeItem("username");
       document.cookie =
-        "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Strict; Secure";
       document.cookie =
-        "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Strict; Secure";
       navigate("/");
     } else {
       console.log("Logout fehler");
@@ -62,6 +63,28 @@ export const eintragAusgabe = async () => {
     return data;
   } catch (error) {
     console.error("Fehler beim Anzeigen", error);
+    throw error;
+  }
+};
+
+// User anzeigen
+
+export const userAnzeigen = async () => {
+  try {
+    const response = await fetch(`${Route}/api/user/user`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
+    if (!response.ok) {
+      throw new Error("Fehler beim Abrufen des Benutzernamens");
+    }
+    const data = await response.json();
+    return data.username;
+  } catch (error) {
+    console.error("Fehler beim Abrufen des Benutzernamens:", error);
     throw error;
   }
 };
@@ -99,7 +122,9 @@ export const Einloggen = async (inputs) => {
       credentials: "include",
     });
     const data = await response.json();
+    console.log("Erhaltene Daten:", data);
     localStorage.setItem("token", data.token);
+
     return data;
   } catch (error) {
     console.error("Login failed:", error.message);
