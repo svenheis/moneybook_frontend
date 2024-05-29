@@ -1,13 +1,19 @@
+// IMPORT
+// React
 import React, { useState } from "react";
+// Komponente
 import Input from "../../components/Allgemein/Input";
 import Button from "../../components/Allgemein/Button";
 import Header from "../../components/Allgemein/Header";
 import Titel from "../../components/Allgemein/Ueberschriften";
-import "../PageStyle.css";
-import "./Erfassen.css";
+// Funktionen
+import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { EintragErfassen } from "../../services/Service";
+// Style
+import "../PageStyle.css";
 
+// SEITE
 const Erfassen = () => {
   const [inputs, setInputs] = useState({
     typ: "Einnahme",
@@ -24,15 +30,15 @@ const Erfassen = () => {
 
   const erfassenSubmitHandler = async (event) => {
     event.preventDefault();
-    console.log(inputs);
     try {
       const response = await EintragErfassen(inputs);
       console.log(response.status);
       if (response.status === 201) {
+        toast("Eintrag erfolgreich hinzugefügt");
         navigate("/home");
       }
-    } catch (err) {
-      throw err;
+    } catch (error) {
+      toast("Eintrag erfassen fehlgeschlagen", error);
     }
   };
   return (
@@ -47,6 +53,7 @@ const Erfassen = () => {
           label="Einnahme:"
           checked={inputs.typ === "Einnahme"}
           onChange={handleChange}
+          className="eintragEinnahme"
         />
         <Input
           type="radio"
@@ -55,6 +62,7 @@ const Erfassen = () => {
           label="Ausgabe:"
           checked={inputs.typ === "Ausgabe"}
           onChange={handleChange}
+          className="eintragAusgabe"
         />
         <Input
           type="date"
@@ -82,7 +90,7 @@ const Erfassen = () => {
         />
         <div className="letzteErfassenReihe">
           <Button
-            className="standartButtonClass erfassenBtn"
+            className="standartButtonClass logInBtn"
             type="submit"
             text="Erfassen"
             onClick={erfassenSubmitHandler}
@@ -91,7 +99,7 @@ const Erfassen = () => {
       </form>
       <div className="footer">
         <Button
-          className="standartButtonClass zurückBtn"
+          className="standartButtonClass registrierenBtn"
           to={"/home"}
           text="zurück"
         />
@@ -99,4 +107,6 @@ const Erfassen = () => {
     </div>
   );
 };
+
+// EXPORT
 export default Erfassen;

@@ -1,11 +1,15 @@
+// IMPORTE
+// React
 import React from "react";
+// Komponente
 import Titel from "../../components/Allgemein/Ueberschriften";
 import Button from "../../components/Allgemein/Button";
-import "../Identifikation/identifikation.css";
+// Style
+import "../PageStyle.css";
 
 function Start() {
   return (
-    <div className="umrandung">
+    <div className="umrandung startPage">
       <Titel titel="Moneybook" />
       <div className="logInFooter">
         <Button

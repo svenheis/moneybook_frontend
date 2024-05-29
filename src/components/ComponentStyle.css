@@ -1,0 +1,151 @@
+/*-----BUTTON-----*/
+/*Button Standart*/
+.standartButtonClass {
+  padding: 1rem;
+  margin: 0.5rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  border-color: transparent;
+  color: white;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.standartButtonClass:hover {
+  box-shadow: 0 0 4px black;
+}
+/*Button LogIn*/
+.logInBtn {
+  background-color: rgba(0, 128, 0, 0.5);
+}
+.logInBtn:hover {
+  background-color: rgba(0, 128, 0);
+}
+/*Button Registrieren*/
+.registrierenBtn {
+  background-color: rgba(0, 0, 255, 0.5);
+}
+.registrierenBtn:hover {
+  background-color: rgba(0, 0, 255);
+}
+/*Button Start und LogOut*/
+.startBtn {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+.startBtn:hover {
+  background-color: rgba(255, 0, 0);
+}
+/*Button Hinzufügen*/
+.hinzufügenBtn {
+  border-radius: 50%;
+  width: 7rem;
+  height: 7rem;
+  background-color: transparent;
+  padding: 0;
+  transition: transform 2s;
+}
+.hinzufügenBtn:hover {
+  box-shadow: none;
+  transform: rotate(360deg);
+}
+.hinzufügenBtn img {
+  height: 100%;
+  width: auto;
+}
+/*Button Löschen*/
+.löschenBtn {
+  height: 100%;
+  width: 100%;
+  border-radius: 0 25px 25px 0;
+  border: none;
+  color: black;
+}
+.ausgabe button {
+  background-color: transparent;
+}
+/*Button Sortieren*/
+.SortBtn {
+  padding: 0;
+  border: none;
+  display: flex;
+  justify-content: center;
+}
+.SortBtn > h5 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: black;
+}
+/*-----Header-----*/
+.header-div {
+  background-color: black;
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+}
+.logo img {
+  height: 6rem;
+  width: 10rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+.logout {
+  display: flex;
+  justify-content: center;
+}
+.username {
+  display: flex;
+  justify-content: center;
+}
+/*-----Überschriften-----*/
+.standartTitelClass {
+  text-align: center;
+}
+/*-----Input-----*/
+.standartInputContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.standartInputClass {
+  background-color: hsla(0, 0%, 90%, 0.3);
+  padding: 5px;
+  margin: 5px;
+  border-radius: 10px;
+}
+.standartInputClass::placeholder {
+  color: black;
+}
+/*-----Bilanz-----*/
+.bilanzZeile {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10rem;
+  margin-right: 10rem;
+}
+.ausgabenZahl {
+  color: red;
+  box-shadow: inset 0 -2px 0 0 black;
+}
+.bilanzZahl {
+  border-bottom: 3px solid black;
+  padding-bottom: 1px;
+}
+.bilanzZahl::after {
+  content: "";
+  display: block;
+  height: 2px;
+  background-color: black;
+}
+.red {
+  color: red;
+}
+/*-----KurzBericht-----*/
+.Ausgabeüberschrift h5 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.betragSpalteKlein {
+  border: 2px solid black;
+
+  padding: 0 10px;
+  text-align: center;
+}

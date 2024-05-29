@@ -1,4 +1,4 @@
-const Route = "https://api.moneybook.heis-design.ch";
+const Route = "http://localhost:3500";
 
 // GET
 
@@ -122,7 +122,6 @@ export const Einloggen = async (inputs) => {
       credentials: "include",
     });
     const data = await response.json();
-    console.log("Erhaltene Daten:", data);
     localStorage.setItem("token", data.token);
 
     return data;

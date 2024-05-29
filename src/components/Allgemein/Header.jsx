@@ -1,11 +1,18 @@
+// IMPORTE
+// React
 import React, { useState, useEffect } from "react";
-import "./Header.css";
+// Komponente
 import Button from "./Button";
-import logo from "../../../public/bilder/Logo/logo.png";
+// Funktionen
 import { useNavigate } from "react-router-dom";
 import { Logout } from "../../services/Service";
 import { userAnzeigen } from "../../services/Service";
+// Bilder
+import logo from "../../../public/bilder/Logo/logo.png";
+// Style
+import "../ComponentStyle.css";
 
+// KOMPONENTE
 const Header = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -19,7 +26,6 @@ const Header = () => {
         console.error("Fehler beim Abrufen des Benutzernamens:", error);
       }
     };
-
     userHeaderAnzeige();
   }, []);
 
@@ -30,15 +36,14 @@ const Header = () => {
   return (
     <div className="header-div">
       <div className="username">
-        {" "}
         <div>{username}</div>
       </div>
       <div className="logo">
         <img src={logo} alt="Logo" />
       </div>
-      <div className="logoutBtn">
+      <div className="logout">
         <Button
-          className="standartButtonClass"
+          className="standartButtonClass startBtn"
           onClick={handleLogoutButton}
           text="Logout"
         />
@@ -46,4 +51,5 @@ const Header = () => {
     </div>
   );
 };
+// EXPORT
 export default Header;

@@ -1,26 +1,31 @@
+// IMPORTE
+// React
 import React from "react";
+// Komponente
 import Button from "../../components/Allgemein/Button";
-import "../PageStyle.css";
 import Header from "../../components/Allgemein/Header";
 import Titel from "../../components/Allgemein/Ueberschriften";
 import Bilanz from "../../components/Main/Bilanz";
 import KurzBericht from "../../components/Main/KurzBericht";
-import "./Home.css";
+// Bilder
 import hinzufuegen from "../../../public/bilder/Hinzufügen/eintragHinzufugen.png";
+// Style
+import "../PageStyle.css";
 
+// SEITE
 function Home() {
   return (
     <div className="umrandung">
       <Header />
       <div className="EintragBilanzAusgabe">
         <div className="bilanz">
-          <Titel hLevel={3} titel="Bilanz" />
+          <Titel hLevel={3} titel="Gesamt-Bilanz" />
           <Bilanz />
         </div>
         <div className="eintragHinzufuegen">
           <Titel hLevel={3} titel="Eintrag Hinzufügen" />
           <Button
-            className="standartButtonClass hinzufügenImg"
+            className="standartButtonClass hinzufügenBtn"
             to={"/eintrag"}
             imgSrc={hinzufuegen}
             altText="Hinzufügen"
@@ -31,7 +36,7 @@ function Home() {
         <Titel hLevel={3} titel="Einträge" />
         <KurzBericht />
         <Button
-          className="standartButtonClass"
+          className="standartButtonClass registrierenBtn"
           to={"/ausgabe"}
           text={"mehr Anzeigen"}
         />
@@ -40,4 +45,5 @@ function Home() {
   );
 }
 
+// EXPORT
 export default Home;

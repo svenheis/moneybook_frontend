@@ -1,13 +1,17 @@
+// IMPORT
+// React
 import React from "react";
-import "./Ueberschriften.css";
+// Style
+import "../ComponentStyle.css";
 
-class Titel extends React.Component {
-  render() {
-    const { titel, className, hLevel } = this.props;
-    const TitelTag = `h${hLevel || 1}`;
-    return (
-      <TitelTag className={`standartTitelClass ${className}`}>{titel}</TitelTag>
-    );
-  }
-}
+// KOMPONENTE
+const Titel = (props) => {
+  const { titel, className, hLevel } = props;
+  const TitelTag = `h${hLevel || 1}`;
+  return (
+    <TitelTag className={`standartTitelClass ${className}`}>{titel}</TitelTag>
+  );
+};
+
+// EXPORT
 export default Titel;

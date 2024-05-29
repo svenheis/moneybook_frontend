@@ -1,18 +1,24 @@
+// IMPORTE
+// React
 import React, { useState } from "react";
+// Komponente
 import Input from "../../components/Allgemein/Input";
 import Button from "../../components/Allgemein/Button";
 import Titel from "../../components/Allgemein/Ueberschriften";
-import "../PageStyle.css";
+// Funktionen
+import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import "./identifikation.css";
 import { Einloggen } from "../../services/Service";
+// Style
+import "../PageStyle.css";
 
 const LogIn = ({ setEingeloggt }) => {
-  // Standartwert eines Inputfeldes
   const [inputs, setInputs] = useState({
     email: "sven@sven.ch",
     password: "12345",
   });
+
+  // Aufruf Navigationsfunktion
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -24,20 +30,18 @@ const LogIn = ({ setEingeloggt }) => {
     event.preventDefault();
     try {
       const data = await Einloggen(inputs);
-
       if (data) {
         setEingeloggt(true);
         navigate("/home");
       } else {
-        alert("Benutzer-Name oder Passwort falsch");
-        console.log("error");
+        toast("Benutzer-Name oder Passwort falsch");
       }
     } catch (error) {
-      console.error("Login failed:", error.message);
+      toast("LogIn fehlgeschlagen", error);
     }
   };
   return (
-    <div className="umrandung">
+    <div className="umrandung loginPage">
       <Titel titel="LogIn" />
       <form onSubmit={loginSubmitHandler}>
         <Input

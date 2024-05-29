@@ -1,11 +1,17 @@
+// IMPORT
+// React
 import React, { useState, useEffect } from "react";
-import Titel from "../Allgemein/Ueberschriften";
-import "./KurzBericht.css";
-import "../../pages/Main/Ausgabe.css";
+// Dayjs (wird für Datumsanpassung benötigt)
 import dayjs from "dayjs";
+// Komponente
+import Titel from "../Allgemein/Ueberschriften";
+// Funktionen
 import { eintragAusgabe } from "../../services/Service";
+// Style
+import "../ComponentStyle.css";
 
-export const KurzBericht = () => {
+// KOMPONENTE
+const KurzBericht = () => {
   const [eingaenge, setEingaenge] = useState([]);
 
   useEffect(() => {
@@ -56,5 +62,5 @@ export const KurzBericht = () => {
     </div>
   );
 };
-
+// EXPORT
 export default KurzBericht;

@@ -1,10 +1,16 @@
+// IMPORTE
+// React
 import React, { useState } from "react";
+// Komponente
 import Input from "../../components/Allgemein/Input";
 import Button from "../../components/Allgemein/Button";
 import Titel from "../../components/Allgemein/Ueberschriften";
-import "../PageStyle.css";
+// Funktionen
 import { useNavigate } from "react-router-dom";
 import { UserErfassen } from "../../services/Service";
+import { toast } from "react-hot-toast";
+// Style
+import "../PageStyle.css";
 
 const Register = (event) => {
   const navigate = useNavigate();
@@ -24,20 +30,44 @@ const Register = (event) => {
   const registerSubmitHandler = async (event) => {
     event.preventDefault();
 
+    // Alle Angaben Trimmen
+    const userName = document.getElementById("userName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    // Falls leere oder falsche Angaben kommen wird eine Meldung ausgegeben
+    if (!userName) {
+      toast("Bitte User-Name eingeben");
+      return;
+    }
+    if (!email) {
+      toast("Bitte E-Mail Adresse eingeben");
+      return;
+    }
+    // Regex zur Email-Validierung
+    if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+      toast("Bitte korrekte E-Mail Adresse eingeben");
+      return;
+    }
+    if (password.length < 4) {
+      toast("Das Passwort muss min. 4 Zeichen haben");
+      return;
+    }
     try {
       const response = await UserErfassen(inputs);
       console.log(response.status);
       if (response.status === 201) {
+        toast("Registration erfolgreich");
         navigate("/login");
       } else {
-        console.error("Schiefgelaufen");
+        toast("Benutzer existiert bereits");
       }
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      toast("Registration fehlgeschlagen", error);
     }
   };
   return (
-    <div className="umrandung">
+    <div className="umrandung registerPage">
       <Titel titel="Registrierung" />
       <form className="registerForm" onSubmit={registerSubmitHandler}>
         <Input
