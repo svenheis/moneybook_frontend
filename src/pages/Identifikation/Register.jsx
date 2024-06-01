@@ -30,10 +30,10 @@ const Register = (event) => {
   const registerSubmitHandler = async (event) => {
     event.preventDefault();
 
-    // Alle Angaben Trimmen
-    const userName = document.getElementById("userName").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
+    // Alle Angaben trimmen
+    const userName = inputs.userName.trim();
+    const email = inputs.email.trim();
+    const password = inputs.password.trim();
 
     // Falls leere oder falsche Angaben kommen wird eine Meldung ausgegeben
     if (!userName) {

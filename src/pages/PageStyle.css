@@ -34,10 +34,8 @@ body {
   margin-top: 8rem;
 }
 .logInFooter {
-  margin-top: 2rem;
   display: flex;
-  align-items: space-around;
-  justify-content: space-around;
+  justify-content: center;
 }
 /*Home Seite*/
 .bilanz {
@@ -81,6 +79,8 @@ body {
 /*Ausgabe Seite*/
 table {
   border-spacing: 0 10px;
+  margin-left: auto;
+  margin-right: auto;
 }
 thead td {
   margin: 0;
@@ -115,40 +115,6 @@ thead td a {
 }
 thead td:first-of-type {
   border-radius: 25px 0 0 25px;
-}
-.radio {
-  display: flex;
-  flex-direction: column;
-}
-.radio .standartInputContainer input[type="checkbox"] {
-  display: none;
-}
-.radio .standartInputContainer label {
-  width: 100%;
-  height: 100%;
-  display: block;
-  background-color: transparent;
-  cursor: pointer;
-  padding: 0 10px;
-  font-size: 1.2rem;
-}
-.filterBoxEinnahmen {
-  border: 2px solid black;
-  border-radius: 0 25px 0 0;
-  background-color: lightgreen;
-}
-.filterBoxEinnahmen:hover {
-  background-color: rgb(0, 255, 0);
-}
-.filterBoxAusgaben {
-  border-bottom: 2px solid black;
-  border-right: 2px solid black;
-  border-left: 2px solid black;
-  border-radius: 0 0 25px 0;
-  background-color: lightcoral;
-}
-.filterBoxAusgaben:hover {
-  background-color: rgb(255, 0, 0);
 }
 tbody tr {
   padding-bottom: 10px;
@@ -206,15 +172,22 @@ tbody > tr > td:last-of-type {
 }
 /*Erfassen Seite*/
 .eintragErfassen {
-  display: grid;
-  grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr;
+  display: flex;
+  flex-direction: column;
 }
 .eintragErfassen .standartInputContainer {
+  display: flex;
   justify-content: center;
+}
+.reiheOben,
+.reiheUnten {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
 }
 .letzteErfassenReihe {
   display: flex;
-  justify-content: end;
+  justify-content: center;
 }
 .footer {
   display: flex;

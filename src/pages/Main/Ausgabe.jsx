@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import Titel from "../../components/Allgemein/Ueberschriften";
 import Button from "../../components/Allgemein/Button";
 import Header from "../../components/Allgemein/Header";
-import Input from "../../components/Allgemein/Input";
+import RadioInput from "../../components/Allgemein/RadioInput";
 // Funktionen
 import { eintragAusgabe, EintragLoeschen } from "../../services/Service";
 // Style
@@ -18,8 +18,7 @@ import toast from "react-hot-toast";
 function Ausgabe() {
   const [eingaenge, setEingaenge] = useState([]);
   const [sortieren, setSortieren] = useState(true);
-  const [filterEinnahmen, setFilterEinnahmen] = useState(true);
-  const [filterAusgaben, setFilterAusgaben] = useState(true);
+  const [filterTyp, setFilterTyp] = useState("");
 
   // Alle Einträge ausgeben
   useEffect(() => {
@@ -83,24 +82,9 @@ function Ausgabe() {
   };
 
   // Filterfunktion
-  const handleFilterEinnahmen = () => {
-    setFilterEinnahmen(true);
-    setFilterAusgaben(false);
+  const handleFilterChange = (event) => {
+    setFilterTyp(event.target.value);
   };
-  const handleFilterAusgaben = () => {
-    setFilterEinnahmen(false);
-    setFilterAusgaben(true);
-  };
-  useEffect(() => {
-    const checkboxEinnahmen = document.getElementById("checkboxEinnahmen");
-    const checkboxAusgaben = document.getElementById("checkboxAusgaben");
-    if (checkboxEinnahmen) {
-      checkboxEinnahmen.checked = filterEinnahmen;
-    }
-    if (checkboxAusgaben) {
-      checkboxAusgaben.checked = filterAusgaben;
-    }
-  }, [filterEinnahmen, filterAusgaben]);
 
   return (
     <div className="umrandung">
@@ -146,43 +130,31 @@ function Ausgabe() {
             </td>
             <td>
               <div className="radio">
-                <div
-                  className={`filterBoxEinnahmen ${
-                    filterEinnahmen ? "active" : ""
-                  }`}
-                >
-                  <Input
-                    type="checkbox"
-                    label="Einnahmen"
-                    id="checkboxEinnahmen"
-                    checked={filterEinnahmen}
-                    onChange={handleFilterEinnahmen}
-                  />
-                </div>
-                <div
-                  className={`filterBoxAusgaben ${
-                    filterAusgaben ? "active" : ""
-                  }`}
-                >
-                  <Input
-                    type="checkbox"
-                    label="Ausgaben"
-                    id="checkboxAusgaben"
-                    checked={filterAusgaben}
-                    onChange={handleFilterAusgaben}
-                  />
-                </div>
+                <RadioInput
+                  type="radio"
+                  name="filterTyp"
+                  value="Einnahme"
+                  label="Einnahme"
+                  checked={filterTyp === "Einnahme"}
+                  onChange={handleFilterChange}
+                  className="filterRadio filterRadioEinnahmen"
+                />
+                <RadioInput
+                  type="radio"
+                  name="filterTyp"
+                  value="Ausgabe"
+                  label="Ausgabe"
+                  checked={filterTyp === "Ausgabe"}
+                  onChange={handleFilterChange}
+                  className="filterRadio filterRadioAusgaben"
+                />
               </div>
             </td>
           </tr>
         </thead>
         <tbody>
           {eingaenge
-            .filter(
-              (eingang) =>
-                (filterEinnahmen && eingang.typ === "Einnahme") ||
-                (filterAusgaben && eingang.typ === "Ausgabe")
-            )
+            .filter((eingang) => (filterTyp ? eingang.typ === filterTyp : true))
             .map((eingang, index) => (
               <tr
                 className="anzeigeContainer"

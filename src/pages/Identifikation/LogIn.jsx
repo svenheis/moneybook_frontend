@@ -60,7 +60,7 @@ const LogIn = ({ setEingeloggt }) => {
           value={inputs.password}
           onChange={handleChange}
         />
-        <div className="footer">
+        <div className="logInFooter">
           <Button
             className="standartButtonClass logInBtn"
             type="submit"
@@ -69,7 +69,7 @@ const LogIn = ({ setEingeloggt }) => {
           />
         </div>
       </form>{" "}
-      <div className="logInFooter">
+      <div className="footer">
         <Button
           className="standartButtonClass registrierenBtn"
           to={"/register"}

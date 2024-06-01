@@ -5,7 +5,7 @@ import React from "react";
 import "../ComponentStyle.css";
 
 // KOMPONENTE
-const Input = (props) => {
+const RadioInput = (props) => {
   const {
     type,
     value,
@@ -18,8 +18,7 @@ const Input = (props) => {
   } = props;
 
   return (
-    <div className={`standartInputContainer ${className}`}>
-      <label htmlFor={`${name}_${value}`}>{label}</label>
+    <div className={`standartInputContainer RadioInput ${className}`}>
       <input
         className={`standartInputClass`}
         name={name}
@@ -30,9 +29,9 @@ const Input = (props) => {
         placeholder={placeholder}
         onClick={onClick}
       />
+      <label htmlFor={`${name}_${value}`}>{label}</label>
     </div>
   );
 };
-
 // EXPORT
-export default Input;
+export default RadioInput;

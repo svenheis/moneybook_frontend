@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 // Komponente
 import Input from "../../components/Allgemein/Input";
+import RadioInput from "../../components/Allgemein/RadioInput";
 import Button from "../../components/Allgemein/Button";
 import Header from "../../components/Allgemein/Header";
 import Titel from "../../components/Allgemein/Ueberschriften";
@@ -46,48 +47,55 @@ const Erfassen = () => {
       <Header />
       <Titel titel="Eintrag erfassen" />
       <form className="eintragErfassen" onSubmit={erfassenSubmitHandler}>
-        <Input
-          type="radio"
-          name="typ"
-          value="Einnahme"
-          label="Einnahme:"
-          checked={inputs.typ === "Einnahme"}
-          onChange={handleChange}
-          className="eintragEinnahme"
-        />
-        <Input
-          type="radio"
-          name="typ"
-          value="Ausgabe"
-          label="Ausgabe:"
-          checked={inputs.typ === "Ausgabe"}
-          onChange={handleChange}
-          className="eintragAusgabe"
-        />
-        <Input
-          type="date"
-          name="datum"
-          placeholder="Datum eingeben"
-          value={inputs.datum}
-          label="Datum:"
-          onChange={handleChange}
-        />
-        <Input
-          type="text"
-          name="titel"
-          placeholder="z.B. Einkaufen"
-          value={inputs.titel}
-          label="Titel:"
-          onChange={handleChange}
-        />
-        <Input
-          type="number"
-          name="betrag"
-          placeholder="Betrag eingeben"
-          value={inputs.betrag}
-          label="Betrag:"
-          onChange={handleChange}
-        />
+        <div className="reiheOben">
+          <Input
+            type="text"
+            name="titel"
+            placeholder="z.B. Einkaufen"
+            value={inputs.titel}
+            label="Titel:"
+            onChange={handleChange}
+            className="Titel"
+          />
+          <RadioInput
+            type="radio"
+            name="typ"
+            value="Einnahme"
+            label="Einnahme"
+            checked={inputs.typ === "Einnahme"}
+            onChange={handleChange}
+            className="eintragRadio eintragEinnahme"
+          />
+          <RadioInput
+            type="radio"
+            name="typ"
+            value="Ausgabe"
+            label="Ausgabe"
+            checked={inputs.typ === "Ausgabe"}
+            onChange={handleChange}
+            className="eintragRadio eintragAusgabe"
+          />
+        </div>
+        <div className="reiheUnten">
+          <Input
+            type="number"
+            name="betrag"
+            placeholder="Betrag eingeben"
+            value={inputs.betrag}
+            label="Betrag:"
+            onChange={handleChange}
+            className="Betrag"
+          />
+          <Input
+            type="date"
+            name="datum"
+            placeholder="Datum eingeben"
+            value={inputs.datum}
+            label="Datum:"
+            onChange={handleChange}
+            className="Datum"
+          />
+        </div>
         <div className="letzteErfassenReihe">
           <Button
             className="standartButtonClass logInBtn"

@@ -1,12 +1,12 @@
 /*-----BUTTON-----*/
 /*Button Standart*/
 .standartButtonClass {
-  padding: 1rem;
+  padding: 0.5rem 2.5rem;
   margin: 0.5rem;
   font-size: 1rem;
-  border-radius: 10px;
+  border-radius: 25px;
   border-color: transparent;
-  color: white;
+  color: black;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 .standartButtonClass:hover {
@@ -14,21 +14,21 @@
 }
 /*Button LogIn*/
 .logInBtn {
-  background-color: rgba(0, 128, 0, 0.5);
+  background-color: lightgreen;
 }
 .logInBtn:hover {
-  background-color: rgba(0, 128, 0);
+  background-color: rgb(0, 255, 0);
 }
 /*Button Registrieren*/
 .registrierenBtn {
-  background-color: rgba(0, 0, 255, 0.5);
+  background-color: lightskyblue;
 }
 .registrierenBtn:hover {
   background-color: rgba(0, 0, 255);
 }
 /*Button Start und LogOut*/
 .startBtn {
-  background-color: rgba(255, 0, 0, 0.5);
+  background-color: lightcoral;
 }
 .startBtn:hover {
   background-color: rgba(255, 0, 0);
@@ -114,6 +114,121 @@
 .standartInputClass::placeholder {
   color: black;
 }
+.Titel input {
+  border: 2px solid black;
+  border-radius: 0;
+  margin: 0;
+  border-right: 0;
+  font-size: 22px;
+  padding: 10px 20px;
+  height: 18px;
+}
+.Titel label {
+  width: 40px;
+  padding: 10px 20px;
+  border: 2px solid black;
+  border-radius: 25px 0 0 25px;
+  margin: 0;
+  border-right: 0;
+}
+.Datum input {
+  border: 2px solid black;
+  border-radius: 0 25px 25px 0;
+  margin: 0;
+  font-size: 22px;
+  padding: 10px 20px;
+  height: 18px;
+  border-right: 0;
+}
+.Datum label {
+  width: 40px;
+  padding: 10px 20px;
+  border: 2px solid black;
+  border-radius: 0;
+  margin: 0;
+  border-right: 0;
+}
+.Betrag input {
+  border: 2px solid black;
+  border-radius: 0;
+  margin: 0;
+  font-size: 22px;
+  padding: 10px 20px;
+  height: 18px;
+  border-right: 0;
+}
+.Betrag label {
+  width: 40px;
+  padding: 10px 20px;
+  border: 2px solid black;
+  border-radius: 25px 0 0 25px;
+  margin: 0;
+  border-right: 0;
+}
+/*-----RadioInput-----*/
+/*Allgemein*/
+.RadioInput input[type="radio"] {
+  display: none;
+}
+.RadioInput label {
+  cursor: pointer;
+  color: black;
+  display: inline-block;
+}
+/*Erfassen*/
+.eintragRadio label {
+  padding: 10px 34px;
+  transition: background-color 0.3s, color 0.3s;
+  width: 80px;
+}
+.eintragEinnahme label {
+  border: 2px solid black;
+  background-color: lightgreen;
+}
+.eintragAusgabe label {
+  border: 2px solid black;
+  background-color: lightcoral;
+  border-radius: 0 25px 25px 0;
+  border-left: 0;
+}
+.eintragEinnahme input[type="radio"]:checked + label {
+  background-color: green;
+}
+.eintragAusgabe input[type="radio"]:checked + label {
+  background-color: red;
+}
+.eintragEinnahme label:hover {
+  background-color: green;
+}
+.eintragAusgabe label:hover {
+  background-color: red;
+}
+/*Ausgabe*/
+.filterRadio label {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  padding: 0 10px;
+  font-size: 1.2rem;
+}
+.filterRadioEinnahmen {
+  border: 2px solid black;
+  border-radius: 0 25px 0 0;
+  background-color: lightgreen;
+}
+.filterRadioEinnahmen:hover {
+  background-color: rgb(0, 255, 0);
+}
+.filterRadioAusgaben {
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+  border-left: 2px solid black;
+  border-radius: 0 0 25px 0;
+  background-color: lightcoral;
+}
+.filterRadioAusgaben:hover {
+  background-color: rgb(255, 0, 0);
+}
 /*-----Bilanz-----*/
 .bilanzZeile {
   display: flex;
@@ -123,10 +238,11 @@
 }
 .ausgabenZahl {
   color: red;
+  padding-bottom: 1px;
   box-shadow: inset 0 -2px 0 0 black;
 }
 .bilanzZahl {
-  border-bottom: 3px solid black;
+  border-bottom: 2px solid black;
   padding-bottom: 1px;
 }
 .bilanzZahl::after {
