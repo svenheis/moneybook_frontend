@@ -34,7 +34,7 @@ const Erfassen = () => {
     // Alle Angaben trimmen
     const Titel = inputs.titel.trim();
     const Typ = inputs.typ.trim();
-    const Betrag = inputs.betrag.trim();
+    const Betrag = inputs.betrag;
     // Falls leere oder falsche Angaben kommen wird eine Meldung ausgegeben
     if (!Titel) {
       toast.error("Bitte einen Titel eingeben");
@@ -44,7 +44,6 @@ const Erfassen = () => {
       toast.error("Ein- oder Ausgaben definieren");
       return;
     }
-    // Regex zur Email-Validierung
     if (!Betrag) {
       toast.error("Bitte einen Betrag eingeben");
       return;
