@@ -16,7 +16,7 @@ const App = () => {
   const [eingeloggt, setEingeloggt] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("username");
     if (token) {
       setEingeloggt(true);
       console.log("Benutzer eingeloggt");
