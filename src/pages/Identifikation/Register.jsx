@@ -55,17 +55,11 @@ const Register = () => {
     try {
       const response = await UserErfassen(inputs);
       console.log(response.status);
-      if (!response.status) {
-        toast.promise(UserErfassen, {
-          loading: "App startet, bitte warten",
-        });
+      if (response.status === 201) {
+        toast.success("Registration erfolgreich");
+        navigate("/login");
       } else {
-        if (response.status === 201) {
-          toast.success("Registration erfolgreich");
-          navigate("/login");
-        } else {
-          toast.error("Benutzer existiert bereits");
-        }
+        toast.error("Benutzer existiert bereits");
       }
     } catch (error) {
       toast.error("Registration fehlgeschlagen", error);
