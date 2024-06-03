@@ -37,15 +37,15 @@ const App = () => {
         ></Route>
         <Route
           path="/home"
-          element={eingeloggt ? <Home /> : <Navigate to="/login" />}
+          element={eingeloggt ? <Home /> : <Navigate to="/" />}
         ></Route>
         <Route
           path="/eintrag"
-          element={eingeloggt ? <Eintrag /> : <Navigate to="/login" />}
+          element={eingeloggt ? <Eintrag /> : <Navigate to="/" />}
         ></Route>
         <Route
           path="/ausgabe"
-          element={eingeloggt ? <Ausgabe /> : <Navigate to="/login" />}
+          element={eingeloggt ? <Ausgabe /> : <Navigate to="/" />}
         ></Route>
       </Routes>
     </div>
