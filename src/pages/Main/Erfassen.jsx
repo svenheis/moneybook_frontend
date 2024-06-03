@@ -34,7 +34,7 @@ const Erfassen = () => {
     // Alle Angaben trimmen
     const Titel = inputs.titel.trim();
     const Typ = inputs.typ.trim();
-    const Betrag = Number(inputs.betrag.trim());
+    const Betrag = inputs.betrag.toFixed(2);
     // Falls leere oder falsche Angaben kommen wird eine Meldung ausgegeben
     if (!Titel) {
       toast.error("Bitte einen Titel eingeben");
@@ -46,10 +46,6 @@ const Erfassen = () => {
     }
     if (!Betrag) {
       toast.error("Bitte einen Betrag eingeben");
-      return;
-    }
-    if (!/^\d*(\.\d[05]?)?$/.test(Betrag)) {
-      toast.error("Einen gültigen Betrag eingeben (auf 5 Rappen runden)");
       return;
     }
     try {
