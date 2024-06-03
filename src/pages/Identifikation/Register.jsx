@@ -12,7 +12,7 @@ import { toast } from "react-hot-toast";
 // Style
 import "../PageStyle.css";
 
-const Register = (event) => {
+const Register = () => {
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     userName: "",
@@ -29,7 +29,6 @@ const Register = (event) => {
   // Funktion zum übergeben der Daten an den Endpunkt
   const registerSubmitHandler = async (event) => {
     event.preventDefault();
-
     // Alle Angaben trimmen
     const userName = inputs.userName.trim();
     const email = inputs.email.trim();
@@ -37,33 +36,39 @@ const Register = (event) => {
 
     // Falls leere oder falsche Angaben kommen wird eine Meldung ausgegeben
     if (!userName) {
-      toast("Bitte User-Name eingeben");
+      toast.error("Bitte User-Name eingeben");
       return;
     }
     if (!email) {
-      toast("Bitte E-Mail Adresse eingeben");
+      toast.error("Bitte E-Mail Adresse eingeben");
       return;
     }
     // Regex zur Email-Validierung
     if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-      toast("Bitte korrekte E-Mail Adresse eingeben");
+      toast.error("Bitte korrekte E-Mail Adresse eingeben");
       return;
     }
     if (password.length < 4) {
-      toast("Das Passwort muss min. 4 Zeichen haben");
+      toast.error("Das Passwort muss min. 4 Zeichen haben");
       return;
     }
     try {
       const response = await UserErfassen(inputs);
       console.log(response.status);
-      if (response.status === 201) {
-        toast("Registration erfolgreich");
-        navigate("/login");
+      if (!response.status) {
+        toast.promise(UserErfassen, {
+          loading: "App startet, bitte warten",
+        });
       } else {
-        toast("Benutzer existiert bereits");
+        if (response.status === 201) {
+          toast.success("Registration erfolgreich");
+          navigate("/login");
+        } else {
+          toast.error("Benutzer existiert bereits");
+        }
       }
     } catch (error) {
-      toast("Registration fehlgeschlagen", error);
+      toast.error("Registration fehlgeschlagen", error);
     }
   };
   return (

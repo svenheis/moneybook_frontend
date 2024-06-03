@@ -36,9 +36,9 @@ function Ausgabe() {
       setEingaenge((prevEingaenge) =>
         prevEingaenge.filter((eintrag) => eintrag._id !== id)
       );
-      toast("Eintrag Gelöscht");
+      toast.success("Eintrag Gelöscht");
     } catch (error) {
-      toast("Eintrag konnte nicht gelöscht werden", error);
+      toast.error("Eintrag konnte nicht gelöscht werden", error);
     }
   };
 

@@ -17,10 +17,10 @@ import "../PageStyle.css";
 // SEITE
 const Erfassen = () => {
   const [inputs, setInputs] = useState({
-    typ: "Einnahme",
-    datum: "2024-05-18",
-    titel: "A",
-    betrag: "1",
+    typ: "",
+    datum: "",
+    titel: "",
+    betrag: "",
   });
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -31,15 +31,37 @@ const Erfassen = () => {
 
   const erfassenSubmitHandler = async (event) => {
     event.preventDefault();
+    // Alle Angaben trimmen
+    const Titel = inputs.titel.trim();
+    const Typ = inputs.typ.trim();
+    const Betrag = inputs.betrag.trim();
+    // Falls leere oder falsche Angaben kommen wird eine Meldung ausgegeben
+    if (!Titel) {
+      toast.error("Bitte einen Titel eingeben");
+      return;
+    }
+    if (!Typ) {
+      toast.error("Ein- oder Ausgaben definieren");
+      return;
+    }
+    // Regex zur Email-Validierung
+    if (!Betrag) {
+      toast.error("Bitte einen Betrag eingeben");
+      return;
+    }
+    if (/^\d*(\.\d[05]?)?$/(Betrag)) {
+      toast.error("Einen gültigen Betrag eingeben (auf 5 Rappen runden)");
+      return;
+    }
     try {
       const response = await EintragErfassen(inputs);
       console.log(response.status);
       if (response.status === 201) {
-        toast("Eintrag erfolgreich hinzugefügt");
+        toast.success("Eintrag erfolgreich hinzugefügt");
         navigate("/home");
       }
     } catch (error) {
-      toast("Eintrag erfassen fehlgeschlagen", error);
+      toast.error("Eintrag erfassen fehlgeschlagen", error);
     }
   };
   return (

@@ -1,5 +1,5 @@
 const Route = "https://api.moneybook.heis-design.ch"; // Gerenderte Einstellung
-//const Route = "http://localhost:3500"; // Lokale Einstellung
+// const Route = "http://localhost:3500"; // Lokale Einstellung
 
 // GET
 

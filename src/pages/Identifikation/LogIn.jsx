@@ -14,8 +14,8 @@ import "../PageStyle.css";
 
 const LogIn = ({ setEingeloggt }) => {
   const [inputs, setInputs] = useState({
-    email: "sven@sven.ch",
-    password: "12345",
+    email: "",
+    password: "",
   });
 
   // Aufruf Navigationsfunktion
@@ -30,14 +30,21 @@ const LogIn = ({ setEingeloggt }) => {
     event.preventDefault();
     try {
       const data = await Einloggen(inputs);
-      if (data) {
-        setEingeloggt(true);
-        navigate("/home");
+      if (!data) {
+        toast.promise(Einloggen, {
+          loading: "App startet, bitte warten",
+        });
       } else {
-        toast("Benutzer-Name oder Passwort falsch");
+        if (data) {
+          setEingeloggt(true);
+          toast.success("Eingeloggt");
+          navigate("/home");
+        } else {
+          toast.error("Benutzer-Name oder Passwort falsch");
+        }
       }
     } catch (error) {
-      toast("LogIn fehlgeschlagen", error);
+      toast.error("LogIn fehlgeschlagen", error);
     }
   };
   return (
