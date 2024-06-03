@@ -34,7 +34,7 @@ const Erfassen = () => {
     // Alle Angaben trimmen
     const Titel = inputs.titel.trim();
     const Typ = inputs.typ.trim();
-    const Betrag = inputs.betrag;
+    const Betrag = Number(inputs.betrag.trim());
     // Falls leere oder falsche Angaben kommen wird eine Meldung ausgegeben
     if (!Titel) {
       toast.error("Bitte einen Titel eingeben");
