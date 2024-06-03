@@ -123,8 +123,6 @@ export const Einloggen = async (inputs) => {
       credentials: "include",
     });
     const data = await response.json();
-    localStorage.setItem("token", data.token);
-
     return data;
   } catch (error) {
     console.error("Login failed:", error.message);
