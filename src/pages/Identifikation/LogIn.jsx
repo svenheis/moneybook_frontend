@@ -26,9 +26,9 @@ const LogIn = ({ setEingeloggt }) => {
     setInputs((values) => ({ ...values, [name]: value }));
   };
   const loginSubmitHandler = async (event) => {
+    toast.promise("App startet, bitte warten");
     event.preventDefault();
     try {
-      toast.promise("App startet, bitte warten");
       const data = await Einloggen(inputs);
       if (data) {
         setEingeloggt(true);
