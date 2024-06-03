@@ -17,7 +17,6 @@ const LogIn = ({ setEingeloggt }) => {
     email: "",
     password: "",
   });
-
   // Aufruf Navigationsfunktion
   const navigate = useNavigate();
 
@@ -29,19 +28,14 @@ const LogIn = ({ setEingeloggt }) => {
   const loginSubmitHandler = async (event) => {
     event.preventDefault();
     try {
+      toast.promise("App startet, bitte warten");
       const data = await Einloggen(inputs);
-      if (!data) {
-        toast.promise(Einloggen, {
-          loading: "App startet, bitte warten",
-        });
+      if (data) {
+        setEingeloggt(true);
+        toast.success("Eingeloggt");
+        navigate("/home");
       } else {
-        if (data) {
-          setEingeloggt(true);
-          toast.success("Eingeloggt");
-          navigate("/home");
-        } else {
-          toast.error("Benutzer-Name oder Passwort falsch");
-        }
+        toast.error("Benutzer-Name oder Passwort falsch");
       }
     } catch (error) {
       toast.error("LogIn fehlgeschlagen", error);
