@@ -49,7 +49,7 @@ const Erfassen = () => {
       toast.error("Bitte einen Betrag eingeben");
       return;
     }
-    if (!/^\d*(\.\d[05]?)?$/.test(Betrag)) {
+    if (!/^\d*(\.\d[05]?)?$/(Betrag)) {
       toast.error("Einen gültigen Betrag eingeben (auf 5 Rappen runden)");
       return;
     }
